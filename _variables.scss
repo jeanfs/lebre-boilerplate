@@ -1,0 +1,64 @@
+/*------------------------------------*\
+  #Global variables
+\*------------------------------------*/
+
+
+/**
+ * Fonts URL
+ */
+$fonturl: 'fonts/';
+
+
+/**
+ * Breakpoints
+ *
+ * Call it with @include media(l) {}
+ */
+$breakpoints: (
+	xs: 20em, //320px
+	s: 30em, //480px
+	m: 37.5em, //600px
+	l: 48em, //768px
+	xl: 64em, //1024px
+	xxl: 75em, //1200px
+	xxxl: 100em, //1600px
+)!default;
+
+
+/**
+ * Color pallete
+ *
+ * Call it with colour('primary');
+ */
+$colours: (
+	'white': '#fff',
+	'grey': '#eee'
+);
+
+
+/**
+ * Font stacks
+ *
+ * Call it with font-stack('body');
+ */
+$font-stacks: (
+	'body': '"Open Sans", Arial, sans-serif',
+	'heading': 'inherit'
+);
+
+
+/**
+ * Grid variables
+ */
+$grid-gutter-width: 	20px;
+$grid-columns: 				12;
+
+$container-s: 				280px;
+$container-m: 				700px;
+$container-l: 				760px;
+$container-xl: 				1060px;
+
+$column-size-s: 			5px;
+$column-size-m: 			30px;
+$column-size-l: 			39px;
+$column-size-xl: 			54px;

@@ -1,0 +1,122 @@
+// Centered container element
+@mixin container-fixed($gutter: $grid-gutter-width) {
+	margin-right: auto;
+	margin-left: auto;
+	@include clearfix($extend: false);
+}
+
+// Creates a wrapper for a series of columns
+@mixin make-row($gutter: $grid-gutter-width) {
+	margin-left: ceil(($gutter / -2));
+	margin-right: floor(($gutter / -2));
+	@include clearfix($extend: false);
+}
+
+@mixin make-grid-columns($i: 1, $list: ".col-s-#{$i}, .col-m-#{$i}, .col-l-#{$i}, .col-xl-#{$i}", $gutter: $grid-gutter-width) {
+	@for $i from (1 + 1) through $grid-columns {
+		$list: "#{$list}, .col-s-#{$i}, .col-m-#{$i}, .col-x-#{$i}, .col-xl-#{$i}";
+	}
+	#{$list} {
+		position: relative;
+		// Prevent columns from collapsing when empty
+		min-height: 1px;
+		// Inner gutter via padding
+		padding-left: ($gutter / 2);
+		padding-right: ($gutter / 2);
+		box-sizing: border-box;
+	}
+}
+
+@mixin float-grid-columns($class, $i: 1, $list: ".col-#{$class}-#{$i}") {
+	@for $i from (1 + 1) through $grid-columns {
+		$list: "#{$list}, .col-#{$class}-#{$i}";
+	}
+	#{$list} {
+		float: left;
+	}
+}
+
+
+@mixin calc-grid-column($index, $class, $type) {
+	@if ($type == width) and ($index > 0) {
+		.col-#{$class}-#{$index} {
+			width: percentage(($index / $grid-columns));
+		}
+	}
+	@if ($type == offset) and ($index == 0) {
+		.col-#{$class}-offset-#{$index} {
+			margin-left: 0;
+		}
+	}
+	@if ($type == offset) and ($index > 0) {
+		.col-#{$class}-offset-#{$index} {
+			margin-left: percentage(($index / $grid-columns));
+		}
+	}
+}
+
+@mixin loop-grid-columns($columns, $class, $type) {
+	@for $i from 0 through $columns {
+		@include calc-grid-column($i, $class, $type);
+	}
+}
+
+// Generate the small columns
+@mixin make-s-column($columns, $gutter: $grid-gutter-width) {
+	position: relative;
+	min-height: 1px;
+	padding-left:  ($gutter / 2);
+	padding-right: ($gutter / 2);
+
+	@media (min-width: map-get($breakpoints, xs)) {
+		float: left;
+		width: percentage(($columns / $grid-columns));
+	}
+}
+
+// Generate the medium columns
+@mixin make-m-column($columns, $gutter: $grid-gutter-width) {
+	position: relative;
+	min-height: 1px;
+	padding-left:  ($gutter / 2);
+	padding-right: ($gutter / 2);
+
+	@media (min-width: map-get($breakpoints, l)) {
+		float: left;
+		width: percentage(($columns / $grid-columns));
+	}
+}
+
+// Generate the large columns
+@mixin make-l-column($columns, $gutter: $grid-gutter-width) {
+	position: relative;
+	min-height: 1px;
+	padding-left:  ($gutter / 2);
+	padding-right: ($gutter / 2);
+
+	@media (min-width: map-get($breakpoints, xxl)) {
+		float: left;
+		width: percentage(($columns / $grid-columns));
+	}
+}
+
+// Generate the extra large columns
+@mixin make-xl-column($columns, $gutter: $grid-gutter-width) {
+	position: relative;
+	min-height: 1px;
+	padding-left:  ($gutter / 2);
+	padding-right: ($gutter / 2);
+
+	@media (min-width: map-get($breakpoints, xxxl)) {
+		float: left;
+		width: percentage(($columns / $grid-columns));
+	}
+}
+
+
+// Create grid for specific class
+@mixin make-grid($class) {
+	@include float-grid-columns($class);
+	@include loop-grid-columns($grid-columns, $class, width);
+	@include loop-grid-columns($grid-columns, $class, offset);
+}

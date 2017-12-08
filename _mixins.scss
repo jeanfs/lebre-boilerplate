@@ -1,0 +1,25 @@
+/*------------------------------------*\
+  #Mixins imports
+\*------------------------------------*/
+
+@import
+	'mixins/animations',
+	'mixins/clearfix',
+	'mixins/fluid-video',
+	'mixins/font',
+	'mixins/forms',
+	'mixins/grid',
+	'mixins/grid-system',
+	'mixins/hidpi',
+	'mixins/icons',
+	'mixins/ie-filter',
+	'mixins/media',
+	'mixins/modernizr',
+	'mixins/rgba',
+	'mixins/shapes',
+	'mixins/color/color',
+	'mixins/color/get-color-value',
+	'mixins/color/rgb',
+	'mixins/color/hsl',
+	'mixins/color/hex',
+	'mixins/color/hex-to-dec';

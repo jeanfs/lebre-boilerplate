@@ -1,0 +1,16 @@
+//
+// Generates fallbacks for browsers that don't support `rgba()` colours
+// @requires {variable} $old-ie
+// @requires {mixin} ie-filter
+// @param {color} $color - Colour with alpha transparency
+//
+@mixin rgba($color) {
+	background-color: opacify(lighten($color, 100*alpha($color)),1); // Automatically figures out an appropriate fallback solid colour
+	background-color: $color; // For browsers that do support rgba
+	@if $old-ie { // Only included in oldie stylesheet
+		.lte-ie8 & {
+			background-color: transparent;
+			@include ie-filter($color, $color);
+		}
+	}
+}

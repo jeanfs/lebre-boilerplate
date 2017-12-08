@@ -1,0 +1,15 @@
+//
+// Generates IE filters for gradients
+// @param {color} $colour1 - Start colour of gradient
+// @param {color} $colour2 - End colour of gradient
+// @param {number} $type (0) - 0 for top to bottom gradient, 1 for left to right gradient
+//
+@mixin ie-filter(
+		$colour1,
+		$colour2,
+		$type: 0
+	) {
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=#{$type}, startColorstr='#{ie-hex-str($colour1)}', endColorstr='#{ie-hex-str($colour2)}')";
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=#{$type}, startColorstr='#{ie-hex-str($colour1)}', endColorstr='#{ie-hex-str($colour2)}');
+	zoom: 1;
+}

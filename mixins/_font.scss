@@ -1,0 +1,50 @@
+//
+// Generates @font-face declarations
+// @requires Compass
+// @param {string} $name - Friendly name of the font
+// @param {string} $filename - name of the font file, without the extension
+// @param {string} $svgname - id of the svg font. Can be found by viewing the source of the svg file under `<font id="svg_name_here">`
+// @param {string | number} $weight (400) - Weight of the font. Accepts numbers eg. `400`, `700` or strings eg. `normal`, `bold`
+// @param {string} $style (normal) - Style of the font. Eg. `normal` or `italic`
+// @example scss
+//  @include font(MyFont,my-webfont,my-webfont-svg-name,bold,italic);
+//
+ $fonturl: '/assets/fonts/' !default;
+@mixin font(
+		$name,
+		$filename,
+		$svgname: $name,
+		$weight: 300,
+		$style:normal
+	) {
+	@at-root (without: media) {
+		@font-face {
+			font-family: $name;
+			src: url($fonturl + $filename + '.eot');
+			src: url($fonturl + $filename + '.eot?') format('embedded-opentype'),
+				 url($fonturl + $filename + '.woff') format('woff'),
+				 url($fonturl + $filename + '.ttf') format('truetype'),
+				 url($fonturl + $filename + '.svg#' + $svgname) format('svg');
+			font-weight:$weight;
+			font-style:$style;
+		}
+	}
+}
+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/line-height#Prefer_unitless_numbers_for_line-height_values
+@function unitless-lh($line-height, $font-size: 16px) {
+	@return ($line-height / $font-size);
+}
+
+@function rem($size, $html-fontsize: 16px) {
+	@return ($size / $html-fontsize) * 1rem;
+}
+
+@mixin font-size($size, $line-height: false) {
+	$rem-size: ($size / 16px) * 1rem;
+	font-size: #{$size};
+	font-size: rem($size);
+	@if $line-height {
+		line-height: #{$line-height/$size};
+	}
+}
