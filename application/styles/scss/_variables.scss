@@ -1,0 +1,91 @@
+/*------------------------------------*\
+  #Global variables
+\*------------------------------------*/
+
+
+/**
+ * Breakpoints
+ *
+ * Call it with @include media(l) {}
+ */
+
+$breakpoints: (
+  s:    30em, // 480px
+  m:    48em, // 768px
+  l:    62em, // 992px
+  xl:   75em, // 1200px
+  xxl:  90em, // 1440px
+)!default;
+
+
+/**
+ * Color pallete
+ *
+ * Call it with colour('primary');
+ */
+
+$colours: (
+  'white':                  '#fff',
+
+  // Gray tones
+  'gray-light':             '#818386',
+  'gray':                   '#4D4E53',
+  'gray-dark':              '#999CA1',
+
+  // Primary color
+  'primary':                '#CC092F',
+
+  // Secondary color
+  'secondary':              '#00539F',
+);
+
+
+/**
+ * Font stacks
+ *
+ * Call it with font-stack('body');
+ */
+$font-stacks: (
+  'body':                   '"Roboto", Arial, sans-serif',
+  'heading':                'inherit'
+);
+
+
+/**
+ * Grid variables
+ */
+
+$grid-gutter-width:         20px;
+$grid-columns:              12;
+
+
+/**
+ * Typography variables
+ */
+
+$default-font-size:         14px;
+$default-line-height:       21px;
+
+$headings-margin-bottom:    $default-line-height;
+$headings-font-family:      'Roboto', 'Open Sans', sans-serif;
+
+$h1-font-size:              40px;
+$h1-line-height:            50px;
+
+$h2-font-size:              32px;
+$h2-line-height:            36px;
+
+$h3-font-size:              22px;
+$h3-line-height:            24px;
+
+$h4-font-size:              18px;
+$h4-line-height:            22px;
+
+$h5-font-size:              16px;
+$h5-line-height:            16px;
+
+$h6-font-size:              14px;
+$h6-line-height:            21px;
+
+$small-font-size:           12px;
+$small-line-height:         16px;

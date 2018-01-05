@@ -1,0 +1,29 @@
+/**
+ * Convert to REM
+ *
+ * @param {string} $size - The size (in pixels) that you want to convert to REM.
+ */
+@function rem($size, $html-fontsize: 16px) {
+  @return ($size / $html-fontsize) * 1rem;
+}
+
+
+/**
+ * Font size
+ *
+ * @param {string} $size - The font size in pixels
+ * @param {string} $size - The line height (in pixels too ;) )
+ *
+ * @returns {string}
+ *
+ * Usage:
+ * @include font-size(17px, 40px);
+ */
+@mixin font-size($size, $line-height: false) {
+  $rem-size: ($size / 16px) * 1rem;
+  font-size: #{$size};
+  font-size: rem($size);
+  @if $line-height {
+    line-height: #{$line-height/$size};
+  }
+}

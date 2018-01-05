@@ -1,0 +1,28 @@
+$old-ie:        false !default;
+$media-extend:  true  !default;
+
+/**
+ * Clearfix mixin
+ *
+ * Extends the %clearfix placeholder when outside or includes the mixin when needed.
+ * @requires {variable} $old-ie
+ * @requires {variable} $media-extend
+ * @param {bool} $extend (true) - Whether or not to extend the placeholder or to include the whole mixin code.
+ */
+@mixin clearfix(
+    $extend: true
+  ) {
+  @if $extend and $media-extend {
+    @extend %clearfix;
+  }
+  @else {
+    &:after {
+      content: '';
+      display: table;
+      clear: both;
+      @if $old-ie {
+        *zoom: 1;
+      }
+    }
+  }
+}

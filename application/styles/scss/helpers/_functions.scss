@@ -1,0 +1,49 @@
+/*------------------------------------*\
+  #Global functions
+\*------------------------------------*/
+
+
+/**
+ * Colour function
+ *
+ * Returns the selected color from the $colors variables map
+ * @param {string} $colour
+ * @returns {string}
+ */
+
+@function colour($key) {
+  @return map-get($colours, $key);
+}
+
+
+/**
+ * Font stack
+ *
+ * Returns the font family defined in $font-stack variable
+ */
+
+@function font-stack($key) {
+  @return #{unquote(map-get($font-stacks,$key))};
+}
+
+
+/**
+  * Headings loop
+  *
+  * Returns the list of heading tags according to the params
+  * @param {number} heading level
+  * @returns {string}
+  *
+  * Usage:
+  * #{headings(1,6)} { color: white; }
+  *
+  * Returns:
+  * h1, h2, h3, h4, h5, h6 { color: white; }
+  */
+@function headings($from:1, $to:6) {
+  @if $from == $to {
+      @return 'h#{$from}';
+  } @else {
+      @return 'h#{$from},' + headings($from+1, $to);
+  }
+}

@@ -1,0 +1,55 @@
+/*------------------------------------*\
+  #General imports
+\*------------------------------------*/
+
+/**
+ * Set the UTF-8 charset
+ */
+
+@charset "utf-8";
+
+
+/**
+ * Functions:
+ * - The functions used to make the work a bit easier, like functions to access variables maps in SASS.
+ *
+ * Mixins:
+ * - Global mixins used across the files
+ *
+ * Variables:
+ * - Global variables instead of variables set in partial files
+ *
+ * Typography:
+ * - The main typography configurations (font-faces)
+ *
+ * Base:
+ * - The base file, used to normalize most of the common styles of the site
+ *
+ * Elements:
+ * - The tiny ones, almost like atoms, that can be used independently of it's context, like buttons, icons, etc
+ *
+ * Components:
+ * - More complex and meaningful structures, like molecules or organisms
+ */
+
+@import
+  // General configs and tools
+  'variables',
+  'helpers/functions',
+  'helpers/mixins',
+
+
+  // The styles \o/
+  'base',
+  'typography',
+  'elements',
+  'components';
+
+
+/**
+ * Need to print? This is the styles for printing
+ */
+
+@media print {
+  @import "print";
+}

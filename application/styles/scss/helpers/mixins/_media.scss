@@ -1,0 +1,70 @@
+$old-ie: false !default;
+
+
+/**
+ * Generates media queries
+ *
+ * @requires {variable} $old-ie
+ * @param {string | number} $size - Size can be a number (if no unit is included, em is assumed), a string representing a breakpoint from the `$breakpoints` map, or a string reresenting a full media query (eg. `only screen and (orientation:portrait)`)
+ * @param {string} $type - either min or max. This will determine if this is a min-width or max-width media query
+ */
+@mixin media(
+  $size: s,
+  $type: min
+  ) {
+  $aliases: (
+    xx-small: xxs,
+    x-small: xs,
+    phone: xs, //phone alias translates to 20em/320px breakpoint
+    small: s,
+    phone-ls: s, //phone-ls alias translates to common phone landscape width (30em/480px)
+    medium: m,
+    med: m,
+    small-tab: m, //small-tab alias (7 inch, non-ipad) translates to 37.5em/600px
+    large: l,
+    tab: l, //tab alias translates to 48em/768px (ipad portrait)
+    x-large: xl,
+    tab-ls: xl, //tab-ls alias translates to 64em/1024px (ipad landscape)
+    xx-large: xxl,
+    xxx-large: xxxl
+  );
+  @if map-get($aliases, $size) {
+    $size: map-get($aliases, $size);
+  }
+  $breakpoint: $size;
+  @if map-get($breakpoints, $size) {
+    $breakpoint: map-get($breakpoints,$size);
+  }
+  @if $breakpoint {
+    @if type-of($breakpoint) == number {
+      @if $old-ie == false {
+        @media only screen and (#{$type}-width: #{$breakpoint}) {
+          $media-extend: false !global;
+          @content;
+          $media-extend: true !global;
+        }
+      }
+      @else {
+        @content;
+      }
+    }
+    @else if type-of($breakpoint) == string {
+      @if $breakpoint == print {
+        @at-root (without: media) {
+          @media print {
+            @content;
+          }
+        }
+      }
+      @else {
+        @if $old-ie == false {
+          @media #{unquote($breakpoint)} {
+            $media-extend: false !global;
+            @content;
+            $media-extend: true !global;
+          }
+        }
+      }
+    }
+  }
+}
